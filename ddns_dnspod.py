@@ -38,7 +38,7 @@ class dnspod():
         return signature
 
 
-    def queryDnsList(self, domain = 'cgddgc.cn'):
+    def queryDnsList(self, domain):
         dnsList = dict({
             'domain':domain,
             'recordType':'A',
@@ -83,7 +83,7 @@ class dnspod():
         print(res)
         return res
 
-    def addDnsRecord(self, subdomain, ipAddr, domain = 'cgddgc.cn', recordType = 'A'):
+    def addDnsRecord(self, subdomain, ipAddr, domain, recordType = 'A'):
         addRecord = dict({
             'domain':domain,
             'subDomain':subdomain,
@@ -155,7 +155,7 @@ if __name__ == '__main__':
     app = dnspod(SecretId = secretId, SecretKey = secretKey)
     
     ip = app.getMyIp()
-    result = app.queryDnsList()
+    result = app.queryDnsList(domain)
     records = result['data']['records']
     for subdomain in subdomains:
         ids = app.getByName(records, subdomain)
@@ -165,7 +165,7 @@ if __name__ == '__main__':
                 app.dnsModify(i['id'], subdomain, ip, domain)
             print('%s modified'%(subdomain + '.' +domain))
         else:
-            app.addDnsRecord(subdomain, ip, )
+            app.addDnsRecord(subdomain, ip, domain)
             print('%s created'%(subdomain + '.' +domain))
     
     
