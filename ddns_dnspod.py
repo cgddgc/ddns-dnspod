@@ -15,15 +15,7 @@ class dnspod():
             'SignatureMethod':'HmacSHA1',    #HmacSHA256
             })
 
-    def dictSort(self, dic):
-        tmp = dict()
-        if isinstance(dic, list):
-            data = {}
-            for i in dic:
-                data.update(i)
-        else:
-            data = dic
-        
+    def dictSort(self, data):
         for d in sorted(data):
             tmp[d] = data[d]
         return tmp
@@ -153,21 +145,23 @@ if __name__ == '__main__':
     domain = 'your domain'
     subdomains = ['www', 'pan', 'cloud']
     app = dnspod(SecretId = secretId, SecretKey = secretKey)
-    
-    ip = app.getMyIp()
-    result = app.queryDnsList(domain)
-    records = result['data']['records']
-    for subdomain in subdomains:
-        ids = app.getByName(records, subdomain)
-        
-        if ids:
-            for i in ids:
-                app.dnsModify(i['id'], subdomain, ip, domain)
-            print('%s modified'%(subdomain + '.' +domain))
-        else:
-            app.addDnsRecord(subdomain, ip, domain)
-            print('%s created'%(subdomain + '.' +domain))
-    
+    recheck = 60 * 5    #5分钟检测一次
+
+    while 1:
+        ip = app.getMyIp()
+        result = app.queryDnsList(domain)
+        records = result['data']['records']
+        for subdomain in subdomains:
+            ids = app.getByName(records, subdomain)
+            
+            if ids:
+                for i in ids:
+                    app.dnsModify(i['id'], subdomain, ip, domain)
+                print('%s modified'%(subdomain + '.' +domain))
+            else:
+                app.addDnsRecord(subdomain, ip, domain)
+                print('%s created'%(subdomain + '.' +domain))
+        time.sleep(recheck)
     
 
 
