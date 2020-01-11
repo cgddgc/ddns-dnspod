@@ -11,9 +11,11 @@
 在脚本中填入自己腾讯云账户的SecretId、SecretKey、域名以及需要解析的子域名列表，
 运行python3 ddns-dnspod.py即可
 
-建议加入计划任务：
+建议使用screen维持后台运行：
 
-crontab -e
+screen -S ddns
 
-*/5 * * * *  nohup python3 ddns-dnspod.py >> ddns.log 2>&1 &
+python3 ddns-dnspod
+
+
 
