@@ -1,10 +1,10 @@
-# ddns-dnspod
+﻿# ddns-dnspod
 腾讯云ddns脚本
 
 
 运行环境：
 
-在python3.6、3.7环境测试通过，但在3.5有几率报错（身份验证失败），一直没找到原因，希望知道的能提个issue
+python3，无需额外安装模块
 
 使用方法：
 
@@ -15,7 +15,12 @@
 
 screen -S ddns
 
-python3 ddns-dnspod
+python3 ddns_dnspod.py
 
+或者加入定时任务
+
+crontab -e
+
+*/5 * * * * python3 ddns_dnspod_noc.py>>/tmp/ddns.log
 
 
