@@ -4,24 +4,24 @@
 
 1. 运行环境：
 
+
 - python3
 
 - 安装 python3 库
-
-pip3 install -i https://mirrors.tencent.com/pypi/simple/ --upgrade tencentcloud-sdk-python
-
-pip3 install -i https://mirrors.tencent.com/pypi/simple/ --upgrade tencentcloud-sdk-python-dnspod
-
+  ```bash
+  pip3 install -i https://mirrors.tencent.com/pypi/simple/ --upgrade tencentcloud-sdk-python
+  pip3 install -i https://mirrors.tencent.com/pypi/simple/ --upgrade tencentcloud-sdk-python-dnspod
+  ```
 - 自建 nginx ，获取本机公网 ip
 
 公网服务器的 nginx 加入下面的配置：
 
-```bash
-location /getip {
-default_type  text/plain;
-return        200 $remote_addr;
-}
-```
+  ```bash
+  location /getip {
+  default_type  text/plain;
+  return        200 $remote_addr;
+  }
+  ```
 
 使用脚本或浏览器访问 http://server/getip ，就可以返回本机的公网地址
 
@@ -33,16 +33,16 @@ return        200 $remote_addr;
 
 建议使用screen维持后台运行：
 
-```bash
-screen -S ddns
+  ```bash
+  screen -S ddns
 
-python3 ddns_api30.py.py
-```
+  python3 ddns_api30.py.py
+  ```
 
 或者加入定时任务:
 
-```bash
-crontab -e
+  ```bash
+  crontab -e
 
-*/5 * * * * python3 ddns_api30.py>>/tmp/ddns.log
-```
+  */5 * * * * python3 ddns_api30.py>>/tmp/ddns.log
+  ```
