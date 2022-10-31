@@ -7,15 +7,19 @@
 - python3
 
 - 安装 python3 库
+
 pip3 install -i https://mirrors.tencent.com/pypi/simple/ --upgrade tencentcloud-sdk-python
+
 pip3 install -i https://mirrors.tencent.com/pypi/simple/ --upgrade tencentcloud-sdk-python-dnspod
 
 - 自建 nginx ，获取本机公网 ip
 公网服务器的 nginx 加入下面的配置：
+'''bash
 location /getip {
 default_type  text/plain;
 return        200 $remote_addr;
 }
+'''
 使用脚本或浏览器访问 http://server/getip ，就可以返回本机的公网地址
 
 
