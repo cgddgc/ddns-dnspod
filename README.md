@@ -33,18 +33,10 @@
 在脚本中填入自己腾讯云账户的SecretId、SecretKey、域名以及需要解析的子域名列表，
 运行python3 ddns-api30.py即可
 
-建议使用screen维持后台运行：
-
-  ```bash
-  screen -S ddns
-
-  python3 ddns_api30.py.py
-  ```
-
-或者加入定时任务:
+或加入定时任务:
 
   ```bash
   crontab -e
 
-  */5 * * * * python3 ddns_api30.py>>/tmp/ddns.log
+  */10 * * * * python3 ddns_api30.py>>/tmp/ddns.log
   ```
