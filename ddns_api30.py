@@ -173,7 +173,7 @@ class dnspod():
 if __name__ == '__main__':
 
     # 腾讯云->访问管理->API密钥管理，新建密钥，获取 SecretId 和 secretKey
-    secretId = 'A'
+    secretId = ''
     secretKey = ''
 
     # 要操作的域名，例如 domain = 'baidu.com'
