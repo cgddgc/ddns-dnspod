@@ -10,11 +10,6 @@ pip3 install -i https://mirrors.tencent.com/pypi/simple/ --upgrade tencentcloud-
 crontab -e
 */5 * * * * python3 tx_ddns.py
 
-或后台运行
-yum install screen
-screen -S tx_ddns
-python3 tx_ddns.py
-
 3.自建 nginx 获取本机公网 ip
 
 公网服务器的 nginx 加入下面的配置：
